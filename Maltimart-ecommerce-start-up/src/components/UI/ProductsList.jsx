@@ -1,7 +1,17 @@
 import React from "react";
+import ProductCard from "./ProductCard";
+const ProductsList = ({ data }) => {
+    return (
+        <>
 
-const ProductsList = () => {
-    return <div>productsList</div>;
+            {
+                data?.map(item => (
+                    <ProductCard item={item} />
+                ))
+            }
+
+        </>
+    );
 };
 
 export default ProductsList;

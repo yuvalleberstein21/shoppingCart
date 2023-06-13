@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Helmet from "../components/Helmet/Helmet";
+import ProductsList from '../components/UI/ProductsList';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom'
 import '../styles/home.css'
@@ -8,9 +9,26 @@ import heroImg from '../assets/images/hero-img.png';
 import Services from "../services/Services";
 
 
+import products from "../assets/data/products";
+
 const Home = () => {
 
+    const [trendingProducts, setTrendingProducts] = useState([])
+    const [bestSalesProducts, setBestSalesProducts] = useState([])
     const year = new Date().getFullYear();
+
+
+    useEffect(() => {
+        const filterdTrendingProducts = products.filter(
+            (item) => item.category === 'chair');
+
+        const filterdBestSalesProducts = products.filter(
+            (item) => item.category === 'sofa');
+
+        setTrendingProducts(filterdTrendingProducts);
+        setBestSalesProducts(filterdBestSalesProducts);
+
+    }, []);
 
     return (
         <Helmet title={"Home"}>
@@ -51,9 +69,22 @@ const Home = () => {
                         <Col lg='12' className="text-center">
                             <h2 className="section__title">Trending Products</h2>
                         </Col>
+                        <ProductsList data={trendingProducts} />
                     </Row>
                 </Container>
             </section>
+
+            <section className="best__sales">
+                <Container>
+                    <Row>
+                        <Col lg='12' className="text-center">
+                            <h2 className="section__title">Best Sales</h2>
+                        </Col>
+                        <ProductsList data={bestSalesProducts} />
+                    </Row>
+                </Container>
+            </section>
+
         </Helmet>
     );
 };
