@@ -3,16 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 
-
-
-
 const productController = require('../controllers/ProductsController');
 
 
 router.get('/getAllProducts', productController.getAllProducts);
-router.get('/getSingleProduct', productController.getSingleProduct);
+router.get('/getSingleProduct/:id', productController.getSingleProduct);
 router.post('/addProduct', productController.addProduct);
-
 router.get('/deleteProduct/:id', productController.deleteProduct);
 
 
