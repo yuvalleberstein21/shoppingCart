@@ -33,7 +33,7 @@ const ProductCard = ({ item }) => {
                 </div>
                 <div className="p-2 product__info">
                     <h3 className="pruduct__name">
-                        <Link to={`/shop/${item.id}`}>{item.productName}</Link>
+                        <Link to={`/shop/${item.productID}`}>{item.productName}</Link>
                     </h3>
                     <span>{item.category}</span>
                 </div>

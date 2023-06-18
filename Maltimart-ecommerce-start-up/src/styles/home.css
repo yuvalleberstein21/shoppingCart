@@ -1,6 +1,9 @@
 .hero__section {
   background: var(--hero-bg);
 }
+.hero__img img {
+  height: 550px;
+}
 
 .hero__content h2 {
   color: var(--primary-color);

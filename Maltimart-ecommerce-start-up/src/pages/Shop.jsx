@@ -1,43 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from '../components/Helmet/Helmet';
 import { Container, Row, Col } from "reactstrap";
 import '../styles/shop.css';
 
-import products from '../assets/data/products';
+// import products from '../assets/data/products';
 import ProductList from "../components/UI/ProductsList";
+import axios from "axios";
 const Shop = () => {
 
-    const [productsData, setProductsData] = useState(products);
+    const [productsData, setProductsData] = useState([]);
+
+
+    const getAllProducts = async () => {
+        await axios.get('/getAllProducts').then(response => {
+            setProductsData(response.data);
+        })
+    }
+
+
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+
+
+
+
 
     const handleFilter = e => {
         const filterValue = e.target.value;
-        if (filterValue === 'sofa') {
-            const filteredProducts = products.filter(item =>
-                item.category === 'sofa')
+        if (filterValue === 'shoes') {
+            const filteredProducts = productsData.filter(item =>
+
+                item.category === 'shoes')
 
             setProductsData(filteredProducts);
         }
-        if (filterValue === 'mobile') {
-            const filteredProducts = products.filter(item =>
-                item.category === 'mobile')
+        if (filterValue === 'shoes') {
+            const filteredProducts = productsData.filter(item =>
+                item.category === 'shoes')
 
             setProductsData(filteredProducts);
         }
         if (filterValue === 'chair') {
-            const filteredProducts = products.filter(item =>
+            const filteredProducts = productsData.filter(item =>
                 item.category === 'chair')
 
             setProductsData(filteredProducts);
         }
         if (filterValue === 'watch') {
-            const filteredProducts = products.filter(item =>
+            const filteredProducts = productsData.filter(item =>
                 item.category === 'watch')
 
             setProductsData(filteredProducts);
         }
         if (filterValue === 'wireless') {
-            const filteredProducts = products.filter(item =>
+            const filteredProducts = productsData.filter(item =>
                 item.category === 'wireless')
 
             setProductsData(filteredProducts);
@@ -49,7 +67,7 @@ const Shop = () => {
     const handleSearch = e => {
         const searchTerm = e.target.value;
 
-        const searchedProducts = products.filter(item => item.productName.toLowerCase().
+        const searchedProducts = productsData.filter(item => item.productName.toLowerCase().
             includes(searchTerm.toLowerCase()))
 
         setProductsData(searchedProducts);
@@ -59,7 +77,6 @@ const Shop = () => {
         <Helmet title='Shop'>
             <CommonSection title='Products' />
 
-
             <section>
                 <Container>
                     <Row>
@@ -67,7 +84,7 @@ const Shop = () => {
                             <div className="filter__widget">
                                 <select onChange={handleFilter}>
                                     <option>Filter By Category</option>
-                                    <option value="sofa">Sofa</option>
+                                    <option value="shoes">Shoes</option>
                                     <option value="mobile">Mobile</option>
                                     <option value="chair">Chair</option>
                                     <option value="watch">Watch</option>
