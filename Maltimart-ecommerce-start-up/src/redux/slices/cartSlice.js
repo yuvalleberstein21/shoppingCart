@@ -4,7 +4,9 @@ const initialState = {
     cartItems: [],
     totalAmount: 0,
     totalQuantity: 0
+
 };
+
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -13,7 +15,7 @@ const cartSlice = createSlice({
         addItem: (state, action) => {
             const newItem = action.payload
             const existingItem = state.cartItems.find(
-                item => item.id === newItem.id
+                item => item.id === newItem.productID
             );
             state.totalQuantity++
 
@@ -33,7 +35,9 @@ const cartSlice = createSlice({
             }
             state.totalAmount = state.cartItems.reduce((total, item) => total + Number(item.price) * Number(item.
                 quantity), 0
+
             );
+
         },
         deleteItem: (state, action) => {
             const id = action.payload;

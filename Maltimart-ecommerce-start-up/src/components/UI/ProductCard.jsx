@@ -17,12 +17,12 @@ const ProductCard = ({ item }) => {
 
     const addToCart = () => {
         dispatch(cartActions.addItem({
-            id: item.id,
+            id: item.productID,
             productName: item.productName,
             price: item.price,
             imgUrl: item.imgUrl,
-
         }))
+        console.log(item.price)
         toast.success('Product added successfully');
     }
     return (

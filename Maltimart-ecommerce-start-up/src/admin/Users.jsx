@@ -8,12 +8,12 @@ import { toast } from "react-toastify";
 
 const Users = () => {
 
-    const { data: usersData, loading } = useGetData('users')
+    // const { data: usersData, loading } = useGetData('users')
 
-    const deleteUser = async (id) => {
-        await deleteDoc(doc(db, 'users', id))
-        toast.success('user deleted!')
-    }
+    // const deleteUser = async (id) => {
+    //     await deleteDoc(doc(db, 'users', id))
+    //     toast.success('user deleted!')
+    // }
 
     return (
         <section>
@@ -34,7 +34,7 @@ const Users = () => {
                             </thead>
 
                             <tbody>
-                                {
+                                {/* {
                                     loading ? <h5 className="pt-5 fw-bold">Loading.....</h5>
                                         : usersData?.map(user => (
                                             <tr key={user.uid}>
@@ -44,7 +44,7 @@ const Users = () => {
                                                 <td><button onClick={() => deleteUser(user.uid)} className="btn btn-danger">Delete</button></td>
                                             </tr>
                                         ))
-                                }
+                                } */}
                             </tbody>
 
                         </table>

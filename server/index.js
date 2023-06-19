@@ -6,6 +6,10 @@ const productRoutes = require('./routes/ProductsRoutes');
 
 const app = express();
 
+
+
+app.use('/public', express.static('public'))
+
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],

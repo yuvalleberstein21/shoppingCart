@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
-
+import { cartActions } from "../redux/slices/cartSlice";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import '../styles/product-details.css';
 import { motion } from "framer-motion";
 import ProductsList from "../components/UI/ProductsList";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 import axios from "axios";
 
@@ -42,7 +43,7 @@ const ProductDetails = () => {
     useEffect(() => {
 
         getProduct();
-   
+
     }, []);
 
     const {
@@ -73,15 +74,15 @@ const ProductDetails = () => {
     //     toast.success('Review submitted')
     // }
 
-    // const addToCart = () => {
-    //     dispatch(cartActions.addItem({
-    //         id,
-    //         image: imgUrl,
-    //         productName,
-    //         price,
-    //     }))
-    //     toast.success('Product added successfully');
-    // }
+    const addToCart = () => {
+        dispatch(cartActions.addItem({
+            id,
+            image: imgUrl,
+            productName,
+            price,
+        }))
+        toast.success('Product added successfully');
+    }
 
 
     useEffect(() => {
@@ -99,7 +100,7 @@ const ProductDetails = () => {
                         {
                             productData.map(product => (
                                 <>
-                                    <Col lg='6' key={product.productID}  className="product__deteails-img">
+                                    <Col lg='6' key={product.productID} className="product__deteails-img">
                                         <img src={product.imgUrl} alt="" />
                                     </Col>
 
@@ -134,7 +135,7 @@ const ProductDetails = () => {
                                             </div>
                                             <p className="mt-3">{product.shortDesc}</p>
 
-                                            <motion.button whileTap={{ scale: 1.2 }} className="buy__btn">Add To Cart</motion.button>
+                                            <motion.button whileTap={{ scale: 1.2 }} className="buy__btn" onClick={addToCart}>Add To Cart</motion.button>
                                         </div>
                                     </Col>
                                 </>

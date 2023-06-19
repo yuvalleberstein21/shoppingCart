@@ -9,12 +9,12 @@ import { toast } from "react-toastify";
 
 const AllProducts = () => {
 
-    const { data: productsData, loading } = useGetData('products')
+    // const { data: productsData, loading } = useGetData('products')
 
-    const deleteProduct = async (id) => {
-        await deleteDoc(doc(db, 'products', id))
-        toast.success('Deleted!')
-    };
+    // const deleteProduct = async (id) => {
+    //     await deleteDoc(doc(db, 'products', id))
+    //     toast.success('Deleted!')
+    // };
 
     return (
         <section>
@@ -34,7 +34,7 @@ const AllProducts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
+                                {/* {
                                     loading ? <h3 className="py-5 text-center fw-bold">Loading....</h3>
                                         :
 
@@ -48,7 +48,7 @@ const AllProducts = () => {
                                             </tr>
                                         ))
 
-                                }
+                                } */}
                             </tbody>
                         </table>
                     </Col>

@@ -7,8 +7,8 @@ import useGetData from '../custom-hooks/useGetData';
 const Dashboard = () => {
 
 
-    const { data: products } = useGetData('products');
-    const { data: users } = useGetData('users');
+    // const { data: products } = useGetData('products');
+    // const { data: users } = useGetData('users');
 
 
     return (
@@ -32,13 +32,13 @@ const Dashboard = () => {
                         <Col lg='3'>
                             <div className="products__box">
                                 <h5>Total Products</h5>
-                                <span>{products.length}</span>
+                                {/* <span>{products.length}</span> */}
                             </div>
                         </Col>
                         <Col lg='3'>
                             <div className="users__box">
                                 <h5>Total Users</h5>
-                                <span>{users.length}</span>
+                                {/* <span>{users.length}</span> */}
                             </div>
                         </Col>
                     </Row>
