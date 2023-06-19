@@ -25,43 +25,33 @@ const Shop = () => {
 
 
 
-
-
     const handleFilter = e => {
         const filterValue = e.target.value;
-        if (filterValue === 'shoes') {
-            const filteredProducts = productsData.filter(item =>
 
-                item.category === 'shoes')
-
-            setProductsData(filteredProducts);
-        }
         if (filterValue === 'shoes') {
             const filteredProducts = productsData.filter(item =>
                 item.category === 'shoes')
-
             setProductsData(filteredProducts);
         }
-        if (filterValue === 'chair') {
+        if (filterValue === 'shirt') {
             const filteredProducts = productsData.filter(item =>
-                item.category === 'chair')
+                item.category === 'shirt')
 
             setProductsData(filteredProducts);
         }
-        if (filterValue === 'watch') {
+        if (filterValue === 'pants') {
             const filteredProducts = productsData.filter(item =>
-                item.category === 'watch')
+                item.category === 'pants')
 
             setProductsData(filteredProducts);
         }
-        if (filterValue === 'wireless') {
+        if (filterValue === 'hat') {
             const filteredProducts = productsData.filter(item =>
-                item.category === 'wireless')
+                item.category === 'hat')
 
             setProductsData(filteredProducts);
         }
-
-
+        return filterValue
     }
 
     const handleSearch = e => {
@@ -85,10 +75,10 @@ const Shop = () => {
                                 <select onChange={handleFilter}>
                                     <option>Filter By Category</option>
                                     <option value="shoes">Shoes</option>
-                                    <option value="mobile">Mobile</option>
-                                    <option value="chair">Chair</option>
-                                    <option value="watch">Watch</option>
-                                    <option value="wireless">Wireless</option>
+                                    <option value="shirt">Shirt</option>
+                                    <option value="pants">Pants</option>
+                                    <option value="hat">Hat</option>
+
                                 </select>
                             </div>
                         </Col>

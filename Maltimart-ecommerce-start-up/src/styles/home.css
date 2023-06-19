@@ -48,6 +48,7 @@
   width: 70% !important;
   height: 70% !important;
   object-fit: contain;
+  padding-bottom: 15rem;
 }
 .store__btn {
   background: #fff;

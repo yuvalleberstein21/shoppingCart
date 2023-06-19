@@ -22,6 +22,9 @@ const Signup = () => {
 
     const navigate = useNavigate();
 
+
+    
+
     const signup = async (e) => {
         e.preventDefault();
 

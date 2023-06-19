@@ -10,9 +10,9 @@ import Services from "../services/Services";
 import Clock from "../components/UI/Clock";
 
 
-import counterImg from '../assets/images/counter-timer-img.png'
+import counterImg from '../assets/images/jordan-logo-1.webp'
 
-import useGetData from "../custom-hooks/useGetData";
+
 import axios from "axios";
 
 
@@ -21,18 +21,20 @@ const Home = () => {
 
     // const { data: products, loading } = useGetData('products');
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false)
 
 
     const getAllProducts = async () => {
+
         await axios.get('/getAllProducts').then(response => {
             setProducts(response.data);
+
         })
     }
 
     const [trendingProducts, setTrendingProducts] = useState([]);
     const [bestSalesProducts, setBestSalesProducts] = useState([]);
-    const [mobileProducts, setMobileProducts] = useState([]);
-    const [wirelessProducts, setWirelessProducts] = useState([]);
+    const [newArrivals, setNewArrivals] = useState([]);
     const [popularProducts, setPopularProducts] = useState([]);
     const year = new Date().getFullYear();
 
@@ -43,24 +45,21 @@ const Home = () => {
             (item) => item.category === 'shoes');
 
         const filterdBestSalesProducts = products.filter(
-            (item) => item.category === 'sofa');
+            (item) => item.category === 'shirt');
 
-        const filterdMobileProducts = products.filter(
-            (item) => item.category === 'mobile');
-
-        const filterdWirelessProducts = products.filter(
-            (item) => item.category === 'wireless');
+        const filterdNewArrivalesProducts = products.filter(
+            (item) => item.category === 'pants');
 
         const filterdPopularProducts = products.filter(
-            (item) => item.category === 'watch');
+            (item) => item.category === 'hat');
 
         setTrendingProducts(filterdTrendingProducts);
         setBestSalesProducts(filterdBestSalesProducts);
-        setMobileProducts(filterdMobileProducts);
-        setWirelessProducts(filterdWirelessProducts);
+        setNewArrivals(filterdNewArrivalesProducts);
         setPopularProducts(filterdPopularProducts);
 
     }, [products]);
+
 
     return (
         <Helmet title={"Home"}>
@@ -85,11 +84,6 @@ const Home = () => {
                                 <img src={heroImg} alt="" />
                             </div>
                         </Col>
-
-
-
-
-
                     </Row>
                 </Container>
             </section>
@@ -119,7 +113,7 @@ const Home = () => {
                         <Col lg='12' className="text-center">
                             <h2 className="section__title">Best Sales</h2>
                         </Col>
-                        <ProductsList data={bestSalesProducts} />
+                        <ProductsList  data={bestSalesProducts} />
                         {/* {
                             loading ? <h5 className="fw-bold">Loading....</h5>
                                 :
@@ -154,21 +148,19 @@ const Home = () => {
                         <Col lg='12' className="text-center">
                             <h2 className="section__title">New Arrivales</h2>
                         </Col>
-                        <ProductsList data={mobileProducts} />
+                        <ProductsList data={newArrivals} />
                         {/* {
                             loading ? <h5 className="fw-bold">Loading....</h5>
                                 :
                             
                         } */}
-                        <ProductsList data={wirelessProducts} />
+
 
                         {/* {
                             loading ? <h5 className="fw-bold">Loading....</h5>
                                 :
                                
                         } */}
-
-
 
                     </Row>
                 </Container>
@@ -186,8 +178,6 @@ const Home = () => {
                                 :
                                
                         } */}
-
-
 
                     </Row>
                 </Container>

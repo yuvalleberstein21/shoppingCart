@@ -8,12 +8,7 @@ import '../styles/product-details.css';
 import { motion } from "framer-motion";
 import ProductsList from "../components/UI/ProductsList";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../redux/slices/cartSlice";
-import { toast } from "react-toastify";
 
-import { db } from "../firebase.config";
-import { doc, getDoc } from "firebase/firestore";
-import useGetData from '../custom-hooks/useGetData';
 import axios from "axios";
 
 
@@ -47,17 +42,7 @@ const ProductDetails = () => {
     useEffect(() => {
 
         getProduct();
-        // const getProduct = async () => {
-        //     const docSnap = await getDoc(docRef)
-
-        //     if (docSnap.exists()) {
-        //         setProduct(docSnap.data())
-        //     } else {
-        //         console.log('no product @')
-        //     }
-        // }
-
-        // getProduct()
+   
     }, []);
 
     const {
@@ -114,7 +99,7 @@ const ProductDetails = () => {
                         {
                             productData.map(product => (
                                 <>
-                                    <Col lg='6' key={product.productID}>
+                                    <Col lg='6' key={product.productID}  className="product__deteails-img">
                                         <img src={product.imgUrl} alt="" />
                                     </Col>
 
