@@ -30,6 +30,7 @@ const ProductDetails = () => {
 
     // const { data: products } = useGetData('products');
     const [productData, setProductsData] = useState([]);
+    const [allProductData, setAllProductsData] = useState([]);
 
     // const docRef = doc(db, 'products', id)
 
@@ -39,9 +40,18 @@ const ProductDetails = () => {
         })
     }
 
+    const getAllProducts = async () => {
+        await axios.get(`/getAllProducts`).then(response => {
+            setAllProductsData(response.data);
+        })
+    }
+
+
+
+
 
     useEffect(() => {
-
+        getAllProducts();
         getProduct();
 
     }, []);
@@ -57,7 +67,9 @@ const ProductDetails = () => {
         category
     } = productData
 
-    const relatedProducts = productData.filter(item => item.category === category);
+
+    const relatedProducts = allProductData.filter(item => item.category === category);
+
 
     // const submitHandler = (e) => {
     //     e.preventDefault();

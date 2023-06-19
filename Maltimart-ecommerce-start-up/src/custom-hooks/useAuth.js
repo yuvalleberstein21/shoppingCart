@@ -10,6 +10,7 @@ const useAuth = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
+
         if (user) {
             setCurrentUser(user)
         }

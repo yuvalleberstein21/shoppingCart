@@ -114,7 +114,7 @@ const Header = () => {
                             <div className="profile">
                                 <motion.img
                                     whileTap={{ scale: 1.2 }}
-                                    src={currentUser ? currentUser.photoURL : userIcon}
+                                    src={currentUser ? currentUser.image : userIcon}
                                     alt=""
                                     onClick={toggleProfileActions}
                                 />

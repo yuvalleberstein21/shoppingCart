@@ -38,6 +38,7 @@ const Login = () => {
                     toast.error(response.data.message)
 
                 } else {
+
                     localStorage.setItem('user', response.data[0].id);
                     toast.success('Success logged in')
                     navigate('/checkout')
