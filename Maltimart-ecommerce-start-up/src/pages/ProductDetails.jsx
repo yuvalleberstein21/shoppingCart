@@ -143,7 +143,9 @@ const ProductDetails = () => {
                                             </div>
                                             <p className="mt-3">{product.shortDesc}</p>
 
-                                            <motion.button whileTap={{ scale: 1.2 }} className="buy__btn" onClick={() => addToCart(product)}>Add To Cart</motion.button>
+                                            <motion.button whileTap={{ scale: 1.2 }} className="buy__btn"
+                                                onClick={() => addToCart(product)}>Add To Cart
+                                            </motion.button>
                                         </div>
                                     </Col>
                                 </>

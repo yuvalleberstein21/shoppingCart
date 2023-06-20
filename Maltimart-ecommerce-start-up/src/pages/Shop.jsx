@@ -15,13 +15,13 @@ const Shop = () => {
     const getAllProducts = async () => {
         await axios.get('/getAllProducts').then(response => {
             setProductsData(response.data);
+            console.log(response.data)
         })
     }
 
 
     useEffect(() => {
         getAllProducts();
-
     }, []);
 
 
@@ -29,31 +29,24 @@ const Shop = () => {
     const handleFilter = e => {
         const filterValue = e.target.value;
 
+        let filteredProducts = [];
+
         if (filterValue === 'shoes') {
-            const filteredProducts = productsData.filter(item =>
-                item.category === 'shoes')
-            setProductsData(filteredProducts);
+            filteredProducts = productsData.filter((item) => item.category === 'shoes');
+        } else if (filterValue === 'shirt') {
+            filteredProducts = productsData.filter((item) => item.category === 'shirt');
+        } else if (filterValue === 'pants') {
+            filteredProducts = productsData.filter((item) => item.category === 'pants');
+        } else if (filterValue === 'hat') {
+            filteredProducts = productsData.filter((item) => item.category === 'hat');
         }
-        if (filterValue === 'shirt') {
-            const filteredProducts = productsData.filter(item =>
-                item.category === 'shirt')
-
-            setProductsData(filteredProducts);
+        if (filterValue === 'all') {
+            filteredProducts = productsData; // Reset to original data
         }
-        if (filterValue === 'pants') {
-            const filteredProducts = productsData.filter(item =>
-                item.category === 'pants')
+        setProductsData(filteredProducts);
+    };
 
-            setProductsData(filteredProducts);
-        }
-        if (filterValue === 'hat') {
-            const filteredProducts = productsData.filter(item =>
-                item.category === 'hat')
 
-            setProductsData(filteredProducts);
-        }
-
-    }
 
     const handleSearch = e => {
         const searchTerm = e.target.value;
@@ -74,12 +67,11 @@ const Shop = () => {
                         <Col lg='3' md='6'>
                             <div className="filter__widget">
                                 <select onChange={handleFilter}>
-                                    <option>Filter By Category</option>
+                                    <option value="all">Filter By Category</option>
                                     <option value="shoes">Shoes</option>
                                     <option value="shirt">Shirt</option>
                                     <option value="pants">Pants</option>
                                     <option value="hat">Hat</option>
-
                                 </select>
                             </div>
                         </Col>
