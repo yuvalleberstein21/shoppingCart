@@ -21,6 +21,7 @@ const Shop = () => {
 
     useEffect(() => {
         getAllProducts();
+
     }, []);
 
 
@@ -51,7 +52,7 @@ const Shop = () => {
 
             setProductsData(filteredProducts);
         }
-        return filterValue
+
     }
 
     const handleSearch = e => {

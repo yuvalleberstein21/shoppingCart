@@ -6,6 +6,7 @@ import '../styles/login.css';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Hedaer/Header";
 
 
 const Signup = () => {
@@ -87,6 +88,7 @@ const Signup = () => {
     return (
         <Helmet title='Signup'>
             <section>
+         
                 <Container>
                     <Row>
                         {

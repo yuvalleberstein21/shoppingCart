@@ -7,9 +7,10 @@ import userIcon from '../../assets/images/user-icon.png';
 import { Container, Nav, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 import useAuth from '../../custom-hooks/useAuth';
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase.config";
+
 import { toast } from 'react-toastify';
+import axios from "axios";
+
 
 
 const nav__links = [
@@ -27,7 +28,7 @@ const nav__links = [
     },
 ]
 
-const Header = () => {
+const Header = ({ image }) => {
 
 
     const totalQuantity = useSelector(state => state.cart.totalQuantity);
@@ -50,18 +51,23 @@ const Header = () => {
         })
     }
 
-    const logout = () => {
-        signOut(auth).then(() => {
-            toast.success('Logged out')
-            navigate('/home')
-        }).catch(err => {
-            toast.error(err.message)
-        })
+    const logout = async (userId) => {
+        await axios.post(`/logout?id=${userId}`)
+            .then(response => {
+                localStorage.removeItem('user');
+                toast.success('successfully logged out')
+                navigate('/home');
+
+            })
+            .catch(error => {
+                toast.error('someting went wrong')
+            });
     }
 
     useEffect(() => {
         stickyHeaderFunc()
         return () => window.removeEventListener('scroll', stickyHeaderFunc)
+
     }, []);
 
 
@@ -83,7 +89,7 @@ const Header = () => {
                         <div className="logo">
                             <img src={logo} alt="logo" />
                             <div>
-                                <h1>Multimart</h1>
+                                <h1>JNAmart</h1>
                             </div>
                         </div>
 
@@ -121,7 +127,7 @@ const Header = () => {
 
                                 <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
                                     {
-                                        currentUser ? <span onClick={logout}>Logout</span>
+                                        currentUser ? <span onClick={() => logout(currentUser)}>Logout</span>
                                             : <div className="d-flex align-items-center justify-content-center flex-column">
                                                 <Link to='/signup'>Signup</Link>
                                                 <Link to='/login'>Login</Link>

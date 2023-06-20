@@ -43,5 +43,10 @@ exports.login = async (req, res) => {
 
 
 exports.logout = async (req, res) => {
-    res.send('work')
+    const userId = req.query.id;
+
+    await con.query(`UPDATE users SET id = NULL WHERE id = ${userId}`, (err, result) => {
+        if (err) console.log(err);
+        return res.send(result)
+    });
 }
